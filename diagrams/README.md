@@ -6,13 +6,12 @@ Visual representations of key Azure enterprise architecture patterns.
 
 ## Directory Structure
 
-```
-diagrams/
-├── png/                    # PNG images for documentation
-├── pdf/                    # PDF documents and whitepapers
-├── svg/                    # SVG vectors (future)
-└── drawio/                 # Source files (future)
-```
+| Path | Description |
+|------|-------------|
+| `png/` | PNG images for documentation |
+| `pdf/` | PDF documents and whitepapers |
+| `svg/` | SVG vectors (future) |
+| `drawio/` | Source files (future) |
 
 ---
 
@@ -85,7 +84,7 @@ All diagrams follow:
 
 ## Related Documentation
 
-- [Three-Layer Architecture Framework](../docs/frameworks/three-layer-architecture.md)
+- [Three-Layer Architecture Framework](../three-layer-overlay/README.md)
 - [Landing Zone Patterns](../landing-zones/README.md)
 - [Industry Solutions](../industry-solutions/README.md)
 - [Architecture Decision Records](../docs/architecture-decisions/README.md)

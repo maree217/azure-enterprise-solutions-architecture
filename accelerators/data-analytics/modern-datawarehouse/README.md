@@ -126,8 +126,8 @@ All variations implement the medallion (multi-hop) architecture:
 
 ![Medallion Data Architecture](../../../diagrams/png/medallion-data-architecture.png)
 
-| Layer | Purpose | Characteristics |
-|-------|---------|-----------------|
+| Layer | Description | Examples |
+|-------|-------------|----------|
 | **Gold** | Business-ready aggregates & metrics | Power BI, ML models, API endpoints |
 | **Silver** | Cleaned, conformed, standardized data | Validated, deduplicated, business logic applied |
 | **Bronze** | Raw data as-ingested | Immutable, full history, all sources |

@@ -4,6 +4,8 @@
 
 Production-ready patterns for building enterprise RAG applications with Azure OpenAI and Azure AI Search.
 
+![RAG Architecture](../../../diagrams/png/rag-architecture.png)
+
 ---
 
 ## Overview
@@ -23,19 +25,39 @@ RAG (Retrieval-Augmented Generation) combines the power of large language models
 
 ## Architecture Patterns
 
-![RAG Architecture Overview](../../../diagrams/png/rag-architecture.png)
-
-*The diagram above shows the complete RAG architecture including document ingestion pipeline and query flow.*
-
 ### Pattern 1: Basic RAG
 
 Simple question-answering over documents.
 
-**Flow:**
-1. **Embed** - Convert query to vector using ada-002: `Query → Vector [0.12, -0.34, ...]`
-2. **Retrieve** - Find top-k similar chunks from AI Search (similarity threshold: 0.7)
-3. **Generate** - GPT-4 answers based on retrieved context
-4. **Response** - Answer with citations: `[doc1.pdf, page 5]`
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         BASIC RAG                                │
+└─────────────────────────────────────────────────────────────────┘
+
+User Query: "What is the return policy?"
+         │
+         ↓
+┌─────────────────┐
+│  1. EMBED       │  Query → Vector [0.12, -0.34, ...]
+│  (ada-002)      │
+└────────┬────────┘
+         │
+         ↓
+┌─────────────────┐
+│  2. RETRIEVE    │  Find top-k similar chunks
+│  (AI Search)    │  Similarity threshold: 0.7
+└────────┬────────┘
+         │
+         ↓
+┌─────────────────┐
+│  3. GENERATE    │  System: "Answer based on context only"
+│  (GPT-4)        │  Context: [retrieved chunks]
+└────────┬────────┘  Query: "What is the return policy?"
+         │
+         ↓
+Response: "Our return policy allows..."
+         + Citations: [doc1.pdf, page 5]
+```
 
 **Best for**: Internal knowledge bases, FAQ systems, documentation search
 
@@ -50,14 +72,36 @@ Simple question-answering over documents.
 
 Combines vector search with keyword search for better recall.
 
-**Hybrid Search Components:**
-| Component | Method | Weight |
-|-----------|--------|--------|
-| Vector Search | Embeddings | 50% |
-| Keyword Search | BM25 | 30% |
-| Semantic Ranking | Reranker | 20% |
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      HYBRID RAG                                  │
+└─────────────────────────────────────────────────────────────────┘
 
-**Flow:** Query → Parallel search (Vector + Keyword + Semantic) → Reciprocal Rank Fusion → Top-K Chunks → GPT-4 Generation
+User Query: "ISO 27001 compliance requirements"
+         │
+         ├──────────────────────┬───────────────────┐
+         ↓                      ↓                   ↓
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  VECTOR SEARCH  │  │  KEYWORD SEARCH │  │ SEMANTIC RANKING│
+│  (Embeddings)   │  │  (BM25)         │  │  (Reranker)     │
+└────────┬────────┘  └────────┬────────┘  └────────┬────────┘
+         │                    │                    │
+         └──────────┬─────────┴──────────┬─────────┘
+                    ↓                    │
+         ┌─────────────────┐             │
+         │  RECIPROCAL     │←────────────┘
+         │  RANK FUSION    │  Combine & rerank results
+         └────────┬────────┘
+                  ↓
+         ┌─────────────────┐
+         │  TOP-K CHUNKS   │  Best of both approaches
+         └────────┬────────┘
+                  ↓
+         ┌─────────────────┐
+         │  GENERATE       │
+         │  (GPT-4)        │
+         └─────────────────┘
+```
 
 **Best for**: Technical documentation, legal documents, mixed content types
 
@@ -82,11 +126,39 @@ Combines vector search with keyword search for better recall.
 
 Searches across multiple specialized indexes.
 
-**Flow:**
-1. **Query Router** (GPT-4) - Analyzes intent and routes to relevant indexes
-2. **Parallel Index Search** - Queries multiple domain-specific indexes (Pricing, Contracts, Policy, etc.)
-3. **Aggregate & Dedupe** - Combines results, removes duplicates, ranks by relevance
-4. **Generate** - Creates response with source index attribution
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     MULTI-INDEX RAG                              │
+└─────────────────────────────────────────────────────────────────┘
+
+User Query: "What discounts apply to enterprise contracts?"
+         │
+         ↓
+┌─────────────────┐
+│  QUERY ROUTER   │  Analyze query intent
+│  (GPT-4)        │  → [pricing, contracts, policies]
+└────────┬────────┘
+         │
+    ┌────┴────┬──────────┐
+    ↓         ↓          ↓
+┌───────┐ ┌───────┐ ┌───────┐
+│PRICING│ │CONTRACTS│ │POLICY│
+│ INDEX │ │ INDEX  │ │INDEX │
+└───┬───┘ └───┬───┘ └───┬───┘
+    │         │         │
+    └────┬────┴────┬────┘
+         ↓         ↓
+┌─────────────────────────┐
+│  AGGREGATE & DEDUPE     │
+│  Remove duplicates      │
+│  Rank by relevance      │
+└───────────┬─────────────┘
+            ↓
+┌─────────────────────────┐
+│  GENERATE WITH CONTEXT  │
+│  Include source index   │
+└─────────────────────────┘
+```
 
 **Best for**: Large enterprises with domain-specific knowledge bases
 
@@ -96,23 +168,40 @@ Searches across multiple specialized indexes.
 
 AI agent decides when and how to retrieve information.
 
-**Example Query:** "Compare our Q3 results with competitors and suggest strategy"
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      AGENTIC RAG                                 │
+└─────────────────────────────────────────────────────────────────┘
 
-**Agent Planning Steps:**
-1. Get our Q3 financial data (Financial Database)
-2. Search for competitor reports (Competitor Reports)
-3. Analyze market trends (Market News)
-4. Generate strategic recommendations (Strategy Templates)
-
-**Data Sources:**
-| Source | Purpose |
-|--------|---------|
-| Financial Database | Internal financial data |
-| Competitor Reports | External competitor analysis |
-| Market News | Industry trends |
-| Strategy Templates | Framework for recommendations |
-
-**Output:** Multi-step synthesized reasoning with comprehensive strategic recommendations
+User: "Compare our Q3 results with competitors and suggest strategy"
+         │
+         ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                    AI AGENT (GPT-4)                              │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  Planning:                                               │    │
+│  │  1. Get our Q3 financial data                           │    │
+│  │  2. Search for competitor reports                       │    │
+│  │  3. Analyze market trends                               │    │
+│  │  4. Generate strategic recommendations                  │    │
+│  └─────────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────────┘
+         │
+         ├──────────────┬──────────────┬──────────────┐
+         ↓              ↓              ↓              ↓
+    ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+    │Financial│   │Competitor│   │ Market  │   │Strategy │
+    │Database │   │ Reports │   │  News   │   │Templates│
+    └─────────┘   └─────────┘   └─────────┘   └─────────┘
+         │              │              │              │
+         └──────────────┴──────────────┴──────────────┘
+                              ↓
+                    ┌─────────────────┐
+                    │  SYNTHESIZE     │
+                    │  Multi-step     │
+                    │  reasoning      │
+                    └─────────────────┘
+```
 
 **Best for**: Complex queries, multi-step reasoning, research tasks
 
@@ -148,13 +237,25 @@ chunking_config = {
 
 ### Hierarchical Chunking
 
-**Structure:**
-- **Parent Chunk** (2000 tokens) - Contains full context for a section
-  - **Child 1** (500 tokens)
-  - **Child 2** (500 tokens)
-  - **Child 3** (500 tokens)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    DOCUMENT                                      │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │  PARENT CHUNK (2000 tokens)                              │   │
+│  │  Contains full context for a section                     │   │
+│  │                                                          │   │
+│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐        │   │
+│  │  │   CHILD 1   │ │   CHILD 2   │ │   CHILD 3   │        │   │
+│  │  │ (500 tokens)│ │ (500 tokens)│ │ (500 tokens)│        │   │
+│  │  └─────────────┘ └─────────────┘ └─────────────┘        │   │
+│  │                                                          │   │
+│  └─────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
 
-**Strategy:** Search matches on child chunks → Return parent chunk for full context
+Search: Match on child chunks
+Return: Parent chunk for full context
+```
 
 ---
 
@@ -244,7 +345,18 @@ procedures I can help you with?
 
 ### Automated Evaluation Pipeline
 
-**Flow:** Test Dataset → RAG System → Evaluate (GPT-4) → Metrics Dashboard
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  Test       │ →  │  RAG        │ →  │  Evaluate   │
+│  Dataset    │    │  System     │    │  (GPT-4)    │
+└─────────────┘    └─────────────┘    └─────────────┘
+                                            │
+                                            ↓
+                                    ┌─────────────┐
+                                    │  Metrics    │
+                                    │  Dashboard  │
+                                    └─────────────┘
+```
 
 ---
 
@@ -252,12 +364,28 @@ procedures I can help you with?
 
 ### Data Access Control
 
-| Layer | Components | Purpose |
-|-------|------------|---------|
-| **1. Authentication** | Entra ID | User identity verification |
-| **2. Authorization** | AI Search security filters, Document-level permissions | Access control |
-| **3. Data Protection** | Encryption at rest (CMK), TLS 1.3, Private endpoints | Data security |
-| **4. Audit** | Query logging, Access tracking, Compliance reports | Monitoring |
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SECURITY LAYERS                               │
+└─────────────────────────────────────────────────────────────────┘
+
+1. AUTHENTICATION
+   └── Entra ID → User identity verified
+
+2. AUTHORIZATION
+   └── Security filters in AI Search
+   └── Document-level permissions
+
+3. DATA PROTECTION
+   └── Encryption at rest (CMK)
+   └── Encryption in transit (TLS 1.3)
+   └── Private endpoints
+
+4. AUDIT
+   └── Query logging
+   └── Access tracking
+   └── Compliance reports
+```
 
 ### Security Filters
 
