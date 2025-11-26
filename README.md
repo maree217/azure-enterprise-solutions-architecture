@@ -1,8 +1,39 @@
 # Azure Enterprise Solutions Architecture
+## Bridging Business Strategy with Technical Excellence
 
-## Center of Excellence | Azure Solutions Architect Expert
+> **"A Center of Excellence isn't just about code; it's about capability."**
 
-A comprehensive knowledge base and reference architecture repository for enterprise Azure solutions, integrating the proven **Three-Layer AI Framework** with Microsoft's best practices from the Cloud Adoption Framework, Well-Architected Framework, and Azure Architecture Center.
+This repository serves as a comprehensive **Enterprise AI Center of Excellence (CoE)**. It bridges the gap between **Strategic Business Goals** (ROI, Efficiency, Innovation) and **Technical Implementation** (Azure, AI, Data).
+
+Whether you are a **Business Leader** looking for outcomes or a **Cloud Architect** looking for patterns, this repository provides the blueprint.
+
+---
+
+## 🚦 Start Here
+
+| I am a... | I want to... | Go to... |
+|-----------|--------------|----------|
+| **Business Leader / Executive** | Understand ROI, use cases, and "Art of the Possible" | [**📘 Business Strategy Guide**](BUSINESS_GUIDE.md) |
+| **Enterprise Architect** | Design scalable, secure, and compliant systems | [**🏗️ Reference Architectures**](reference-architectures/) |
+| **Engineer / Developer** | Get code, scripts, and deployment templates | [**💻 Accelerators & Code**](accelerators/) |
+
+---
+
+## 🏙️ The "City Planning" Analogy
+To understand how a modern Enterprise AI architecture works, think of it like **planning a smart city**:
+
+*   **Layer 3: Infrastructure (The Foundation)**
+    *   *The Roads, Power Grid, & Water Pipes.*
+    *   Essential, invisible, and must be robust. If this fails, the city stops.
+    *   *Tech:* Azure Landing Zones, Security, Networking.
+*   **Layer 2: Intelligence (The Logistics)**
+    *   *Traffic Control, Warehouses, & Libraries.*
+    *   Moving things efficiently and knowing where everything is stored.
+    *   *Tech:* Data Lake, Synapse, Knowledge Bases.
+*   **Layer 1: Experience (The Life)**
+    *   *Shops, Parks, Homes, & Offices.*
+    *   Where people actually live, work, and interact with the city.
+    *   *Tech:* Copilots, Power Apps, Dashboards.
 
 ---
 
