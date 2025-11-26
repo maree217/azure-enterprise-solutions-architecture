@@ -1,0 +1,400 @@
+{
+  "$schema": "maturity-model-schema",
+  "version": "1.0",
+  "description": "Azure Architecture Maturity Model for Radar Chart Generation",
+  "assessmentInfo": {
+    "client": "",
+    "assessor": "",
+    "date": "",
+    "subscriptionCount": 0
+  },
+  "scoringGuide": {
+    "1": {
+      "level": "Initial",
+      "description": "Ad-hoc processes, no standardization, reactive approach"
+    },
+    "2": {
+      "level": "Developing",
+      "description": "Basic practices in place, inconsistent implementation"
+    },
+    "3": {
+      "level": "Defined",
+      "description": "Documented standards, partial adoption across organization"
+    },
+    "4": {
+      "level": "Managed",
+      "description": "Consistent implementation, metrics-driven decisions"
+    },
+    "5": {
+      "level": "Optimized",
+      "description": "Continuous improvement, fully automated, industry-leading"
+    }
+  },
+  "pillars": {
+    "reliability": {
+      "name": "Reliability",
+      "weight": 0.20,
+      "overallScore": null,
+      "dimensions": {
+        "highAvailability": {
+          "name": "High Availability",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Availability zones deployment",
+            "Regional redundancy",
+            "Load balancing configuration"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "disasterRecovery": {
+          "name": "Disaster Recovery",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "DR plan documented",
+            "DR tested within 12 months",
+            "RTO/RPO defined and achievable"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "backupRecovery": {
+          "name": "Backup & Recovery",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "All critical data backed up",
+            "Restore procedures tested",
+            "Retention policies defined"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "resilience": {
+          "name": "Application Resilience",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Retry policies implemented",
+            "Circuit breaker patterns",
+            "Graceful degradation"
+          ],
+          "evidence": [],
+          "gaps": []
+        }
+      }
+    },
+    "security": {
+      "name": "Security",
+      "weight": 0.25,
+      "overallScore": null,
+      "dimensions": {
+        "identity": {
+          "name": "Identity & Access",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "MFA enforced",
+            "Managed identities used",
+            "PIM enabled",
+            "Conditional access configured"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "network": {
+          "name": "Network Security",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "NSGs properly configured",
+            "Network segmentation",
+            "Private endpoints for PaaS",
+            "WAF/DDoS protection"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "data": {
+          "name": "Data Protection",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Encryption at rest",
+            "TLS 1.2+ enforced",
+            "Key Vault for secrets",
+            "Data classification"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "compliance": {
+          "name": "Compliance & Governance",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Defender for Cloud enabled",
+            "Secure Score > 70%",
+            "Regulatory compliance tracked",
+            "Security policies enforced"
+          ],
+          "evidence": [],
+          "gaps": []
+        }
+      }
+    },
+    "costOptimization": {
+      "name": "Cost Optimization",
+      "weight": 0.15,
+      "overallScore": null,
+      "dimensions": {
+        "visibility": {
+          "name": "Cost Visibility",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Tagging strategy implemented",
+            "Budgets configured",
+            "Cost allocation by project"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "rightsizing": {
+          "name": "Rightsizing",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "VM sizes appropriate",
+            "No orphaned resources",
+            "Regular utilization review"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "commitments": {
+          "name": "Commitment Discounts",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Reserved Instances coverage",
+            "Savings Plans utilized",
+            "Hybrid Benefit applied"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "finops": {
+          "name": "FinOps Practice",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "FinOps team/process",
+            "Regular cost reviews",
+            "Optimization automation"
+          ],
+          "evidence": [],
+          "gaps": []
+        }
+      }
+    },
+    "operationalExcellence": {
+      "name": "Operational Excellence",
+      "weight": 0.20,
+      "overallScore": null,
+      "dimensions": {
+        "monitoring": {
+          "name": "Monitoring & Alerting",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Azure Monitor configured",
+            "Actionable alerts",
+            "Dashboards for key metrics"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "logging": {
+          "name": "Logging & Diagnostics",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Centralized logging",
+            "Diagnostic settings enabled",
+            "Log retention policies"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "automation": {
+          "name": "Infrastructure as Code",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "IaC for all resources",
+            "CI/CD pipelines",
+            "Environment consistency"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "processes": {
+          "name": "Operational Processes",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Change management",
+            "Incident response",
+            "Runbook documentation"
+          ],
+          "evidence": [],
+          "gaps": []
+        }
+      }
+    },
+    "performanceEfficiency": {
+      "name": "Performance Efficiency",
+      "weight": 0.20,
+      "overallScore": null,
+      "dimensions": {
+        "scaling": {
+          "name": "Scaling",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Autoscaling configured",
+            "Appropriate scale triggers",
+            "Scale testing performed"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "caching": {
+          "name": "Caching",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Redis/CDN implemented",
+            "Cache hit ratios monitored",
+            "Cache invalidation strategy"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "database": {
+          "name": "Database Performance",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Appropriate tier selection",
+            "Index optimization",
+            "Query performance insights"
+          ],
+          "evidence": [],
+          "gaps": []
+        },
+        "testing": {
+          "name": "Performance Testing",
+          "score": null,
+          "maxScore": 5,
+          "criteria": [
+            "Load testing regular",
+            "Performance baselines",
+            "Bottleneck identification"
+          ],
+          "evidence": [],
+          "gaps": []
+        }
+      }
+    }
+  },
+  "threeLayerFramework": {
+    "layer1": {
+      "name": "End User Experience",
+      "score": null,
+      "components": {
+        "powerPlatform": {
+          "score": null,
+          "gaps": []
+        },
+        "copilotStudio": {
+          "score": null,
+          "gaps": []
+        },
+        "webApps": {
+          "score": null,
+          "gaps": []
+        }
+      }
+    },
+    "layer2": {
+      "name": "Organizational Intelligence",
+      "score": null,
+      "components": {
+        "dataLake": {
+          "score": null,
+          "gaps": []
+        },
+        "azureOpenAI": {
+          "score": null,
+          "gaps": []
+        },
+        "aiSearch": {
+          "score": null,
+          "gaps": []
+        },
+        "machineLearning": {
+          "score": null,
+          "gaps": []
+        }
+      }
+    },
+    "layer3": {
+      "name": "Infrastructure & Operations",
+      "score": null,
+      "components": {
+        "networking": {
+          "score": null,
+          "gaps": []
+        },
+        "compute": {
+          "score": null,
+          "gaps": []
+        },
+        "storage": {
+          "score": null,
+          "gaps": []
+        },
+        "security": {
+          "score": null,
+          "gaps": []
+        }
+      }
+    }
+  },
+  "summary": {
+    "overallScore": null,
+    "maturityLevel": null,
+    "topStrengths": [],
+    "topGaps": [],
+    "recommendedPriorities": []
+  },
+  "radarChartData": {
+    "labels": [
+      "Reliability",
+      "Security",
+      "Cost Optimization",
+      "Operational Excellence",
+      "Performance Efficiency"
+    ],
+    "currentState": [null, null, null, null, null],
+    "targetState": [4, 4, 4, 4, 4],
+    "industryBenchmark": [3.5, 3.8, 3.2, 3.4, 3.5]
+  },
+  "visualizationScript": {
+    "python": "# Generate radar chart from this JSON\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport json\n\n# Load data\nwith open('maturity-model.json', 'r') as f:\n    data = json.load(f)\n\n# Radar chart\nlabels = data['radarChartData']['labels']\ncurrent = data['radarChartData']['currentState']\ntarget = data['radarChartData']['targetState']\n\nangles = np.linspace(0, 2*np.pi, len(labels), endpoint=False).tolist()\ncurrent += current[:1]\ntarget += target[:1]\nangles += angles[:1]\n\nfig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))\nax.plot(angles, current, 'o-', linewidth=2, label='Current State')\nax.fill(angles, current, alpha=0.25)\nax.plot(angles, target, 'o-', linewidth=2, label='Target State')\nax.set_xticks(angles[:-1])\nax.set_xticklabels(labels)\nax.set_ylim(0, 5)\nax.legend(loc='upper right')\nplt.title('Architecture Maturity Assessment')\nplt.savefig('maturity-radar.png', dpi=150, bbox_inches='tight')\nplt.show()"
+  }
+}
