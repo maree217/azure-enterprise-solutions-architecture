@@ -224,62 +224,33 @@ Secure, compliant landing zone for regulated industries.
 
 ## Architecture Patterns
 
-### Standard Enterprise Pattern
+### Management Group Hierarchy
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Tenant Root Group                         │
-└─────────────────────────────────────────────────────────────┘
-                              │
-    ┌─────────────────────────┴─────────────────────────┐
-    │                                                    │
-    ↓                                                    ↓
-┌──────────────────┐                        ┌──────────────────┐
-│    Platform      │                        │   Landing Zones  │
-│  (Shared Svcs)   │                        │   (Workloads)    │
-└──────────────────┘                        └──────────────────┘
-    │                                            │
-    ├── Identity                                 ├── Corp
-    │   └── Entra ID, PIM                        │   └── Internal workloads
-    │                                            │
-    ├── Management                               ├── Online
-    │   └── Monitor, Automation                  │   └── Internet-facing
-    │                                            │
-    └── Connectivity                             └── Sandbox
-        └── Hub, Firewall, Gateway                   └── Dev/Test
-```
+![Management Group Hierarchy](../diagrams/png/management-group-hierarchy.png)
 
-### Network Topology
+The management group structure follows the Enterprise-Scale pattern:
 
-```
-                         ┌──────────────────┐
-                         │   On-Premises    │
-                         │                  │
-                         └────────┬─────────┘
-                                  │ ExpressRoute/VPN
-                                  │
-                         ┌────────┴─────────┐
-                         │    Hub VNet      │
-                         │  ┌────────────┐  │
-                         │  │ Azure      │  │
-                         │  │ Firewall   │  │
-                         │  └────────────┘  │
-                         │  ┌────────────┐  │
-                         │  │ Bastion    │  │
-                         │  └────────────┘  │
-                         │  ┌────────────┐  │
-                         │  │ Gateway    │  │
-                         │  └────────────┘  │
-                         └────────┬─────────┘
-                                  │
-         ┌───────────┬────────────┼────────────┬───────────┐
-         │           │            │            │           │
-         ↓           ↓            ↓            ↓           ↓
-    ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐
-    │ Prod    │ │ Dev     │ │ Data    │ │ AI/ML   │ │ DMZ     │
-    │ Spoke   │ │ Spoke   │ │ Spoke   │ │ Spoke   │ │ Spoke   │
-    └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘
-```
+- **Platform**: Shared services (Identity, Management, Connectivity)
+- **Landing Zones**: Workload subscriptions (Corp for internal, Online for internet-facing)
+- **Sandbox**: Isolated dev/test with restricted policies
+
+### Hub-Spoke Network Topology
+
+![Hub-Spoke Landing Zone Topology](../diagrams/png/hub-spoke-landing-zone-topology.png)
+
+The hub-spoke topology provides:
+
+- **Central Hub**: Azure Firewall, VPN Gateway, ExpressRoute Gateway, Azure Bastion, Shared Services
+- **Spoke 1 (Production)**: AKS, App Services with 10.1.0.0/16 address space
+- **Spoke 2 (Development)**: Dev/Test resources with 10.2.0.0/16 address space
+- **Spoke 3 (Data Platform)**: Synapse, Databricks with 10.3.0.0/16 address space
+- **Spoke 4 (Shared Services)**: DNS, AD DS with 10.4.0.0/16 address space
+
+**Key Features**:
+- VNet peering between hub and all spokes
+- Forced tunneling through Azure Firewall
+- ExpressRoute connectivity to on-premises
+- Internet access controlled via firewall
 
 ---
 

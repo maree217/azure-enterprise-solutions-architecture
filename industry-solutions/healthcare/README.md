@@ -18,66 +18,16 @@ Healthcare organizations face unique challenges: stringent regulatory requiremen
 
 ---
 
-## Three-Layer Architecture for Healthcare
+## HIPAA-Compliant Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                 HEALTHCARE THREE-LAYER ARCHITECTURE                          │
-└─────────────────────────────────────────────────────────────────────────────┘
+![Healthcare HIPAA-Compliant Architecture](../../diagrams/png/healthcare-hipaa-architecture.png)
 
-LAYER 1: PATIENT & PROVIDER EXPERIENCE
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
-│  │   Patient    │  │  Provider    │  │   Clinical   │  │  Care Team   │    │
-│  │   Portal     │  │    App       │  │   Copilot    │  │ Collaboration│    │
-│  │  (Power Apps)│  │  (Teams)     │  │(Azure OpenAI)│  │   (Teams)    │    │
-│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘    │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-LAYER 2: CLINICAL INTELLIGENCE
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                              │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │                    AZURE HEALTH DATA SERVICES                         │  │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  │  │
-│  │  │ FHIR Server │  │ DICOM Server│  │ MedTech IoT │  │ De-identify │  │  │
-│  │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘  │  │
-│  └──────────────────────────────────────────────────────────────────────┘  │
-│                                                                              │
-│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐                   │
-│  │ Azure OpenAI  │  │  Azure ML     │  │ AI Search    │                   │
-│  │ (Clinical AI) │  │ (Diagnostics) │  │(Medical KB)  │                   │
-│  └───────────────┘  └───────────────┘  └───────────────┘                   │
-│                                                                              │
-│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐                   │
-│  │ Synapse       │  │  Databricks   │  │  Purview     │                   │
-│  │ (Analytics)   │  │  (ML Ops)     │  │ (Governance) │                   │
-│  └───────────────┘  └───────────────┘  └───────────────┘                   │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-LAYER 3: SECURE INFRASTRUCTURE
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                              │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │                    HIPAA-COMPLIANT LANDING ZONE                       │  │
-│  │  • Private endpoints for all PHI services                            │  │
-│  │  • Network segmentation (clinical, admin, research)                  │  │
-│  │  • Customer-managed keys for encryption                               │  │
-│  │  • Azure Confidential Computing for sensitive processing             │  │
-│  └──────────────────────────────────────────────────────────────────────┘  │
-│                                                                              │
-│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐  │
-│  │ Key Vault     │  │ Defender      │  │ Sentinel      │  │ Azure       │  │
-│  │ (HSM)         │  │ for Cloud     │  │ (SIEM)        │  │ Monitor     │  │
-│  └───────────────┘  └───────────────┘  └───────────────┘  └─────────────┘  │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+The architecture above shows a complete HIPAA/HITRUST compliant zone with:
+
+- **Azure Health Data Services**: FHIR, DICOM, and MedTech services for clinical data
+- **Defense in Depth**: DDoS Protection, WAF, Private Link, and Defender for Cloud
+- **PHI Protection**: All data stores marked with PHI indicators, customer-managed key encryption
+- **Integration Points**: EHR systems, medical devices, and imaging systems connected via secure channels
 
 ---
 

@@ -74,37 +74,23 @@ We adopt an **AI capability stack** aligned with the Three-Layer Architecture:
 
 For most enterprise AI use cases, we recommend the RAG (Retrieval-Augmented Generation) pattern:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    RAG ARCHITECTURE                              │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  User Query                                                      │
-│      │                                                           │
-│      ▼                                                           │
-│  ┌─────────────────┐                                            │
-│  │   EMBEDDING     │  Azure OpenAI                              │
-│  │   (Query)       │  text-embedding-3-large                    │
-│  └────────┬────────┘                                            │
-│           │                                                      │
-│           ▼                                                      │
-│  ┌─────────────────┐     ┌─────────────────┐                    │
-│  │  VECTOR SEARCH  │────▶│  KNOWLEDGE BASE │                    │
-│  │  Azure AI Search│     │  (Documents)    │                    │
-│  └────────┬────────┘     └─────────────────┘                    │
-│           │                                                      │
-│           │ Retrieved Context                                    │
-│           ▼                                                      │
-│  ┌─────────────────┐                                            │
-│  │   GENERATION    │  Azure OpenAI                              │
-│  │   (Answer)      │  GPT-4o                                    │
-│  └────────┬────────┘                                            │
-│           │                                                      │
-│           ▼                                                      │
-│  User Response                                                   │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+![RAG (Retrieval-Augmented Generation) Architecture](../../diagrams/png/rag-architecture.png)
+
+The diagram above shows both flows:
+
+**Data Ingestion Flow (Left)**:
+1. Documents from PDF, Word, SharePoint sources
+2. Document Intelligence for chunking/extraction
+3. Embedding Model (text-embedding-3-large) for vectorization
+4. Azure AI Search as the vector store
+
+**Query Flow (Right)**:
+1. User query embedded using the same model
+2. Vector search retrieves relevant context
+3. Azure OpenAI GPT-4o generates response with retrieved context
+4. Response returned to user
+
+**Security**: All services operate within a Private Endpoints / VNet Integration boundary (green dashed box).
 
 ### Model Selection Guidelines
 

@@ -27,27 +27,9 @@ We need an opinionated framework that:
 
 We adopt a **Three-Layer Enterprise AI Architecture** with explicit build order:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ LAYER 1: END USER EXPERIENCE (BUILD LAST)                      │
-│ Where users interact with intelligent capabilities              │
-│ Power Apps | Copilot Studio | Custom Web Apps | Teams          │
-└─────────────────────────────────────────────────────────────────┘
-                              ▲
-                              │
-┌─────────────────────────────────────────────────────────────────┐
-│ LAYER 2: ORGANIZATIONAL INTELLIGENCE (BUILD SECOND)            │
-│ Where data becomes actionable intelligence                      │
-│ Azure OpenAI | Synapse | Databricks | AI Search | ML           │
-└─────────────────────────────────────────────────────────────────┘
-                              ▲
-                              │
-┌─────────────────────────────────────────────────────────────────┐
-│ LAYER 3: INFRASTRUCTURE & OPERATIONS (BUILD FIRST)             │
-│ Foundation that enables everything above                        │
-│ Networking | Security | Observability | Cost Management        │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Three-Layer Enterprise AI Architecture](../../diagrams/png/three-layer-architecture-overview.png)
+
+> **Full Framework Documentation**: See the [Three-Layer Framework Whitepaper](../../diagrams/pdf/three-layer-framework-whitepaper.pdf) for comprehensive methodology, industry validation, and implementation guidance.
 
 ### Build Order Rationale
 

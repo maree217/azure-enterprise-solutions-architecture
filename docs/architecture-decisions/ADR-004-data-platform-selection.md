@@ -216,22 +216,15 @@ We adopt a **workload-based selection approach** with three patterns:
 
 All patterns should implement medallion architecture:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    MEDALLION ARCHITECTURE                        │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
-│  │   BRONZE    │───▶│   SILVER    │───▶│    GOLD     │         │
-│  │   (Raw)     │    │  (Cleansed) │    │  (Curated)  │         │
-│  │             │    │             │    │             │         │
-│  │ • As-is     │    │ • Validated │    │ • Aggregated│         │
-│  │ • Full      │    │ • Dedupe    │    │ • Modeled   │         │
-│  │   history   │    │ • Conformed │    │ • Optimized │         │
-│  └─────────────┘    └─────────────┘    └─────────────┘         │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Medallion Data Architecture (Bronze/Silver/Gold)](../../diagrams/png/medallion-data-architecture.png)
+
+The diagram above shows the complete data quality progression:
+
+- **Bronze Layer**: Raw data from SQL DBs, REST APIs, Files, IoT devices stored as-is in ADLS Gen2
+- **Silver Layer**: Cleansed data processed through Synapse/Databricks, stored as Delta Tables (Parquet)
+- **Gold Layer**: Business-ready data powering Power BI dashboards, analytics, and ML models
+
+**Key Principle**: Data quality increases from left to right, with each layer adding validation and business logic.
 
 ## References
 

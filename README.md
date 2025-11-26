@@ -26,42 +26,34 @@ This repository serves as a **Center of Excellence** for organizations seeking t
 
 ---
 
-## Three-Layer Framework Integration
+## The Framework: Three-Layer Enterprise AI Architecture
 
-This repository uniquely maps all Azure patterns to the **Three-Layer Enterprise AI Architecture**, a proven framework with measurable ROI:
+This repository implements the **Three-Layer Enterprise AI Architecture** — a proven framework that synthesizes industry-leading approaches from Gartner, McKinsey, MIT CISR, and Microsoft into a practical, business-outcome-focused methodology.
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│           LAYER 1: END USER EXPERIENCE                       │
-│           Build LAST  →  6-9 months  →  5-10x ROI           │
-│                                                              │
-│   Power Apps │ Copilot Studio │ RAG Chatbots │ Dashboards   │
-└──────────────────────────────────────────────────────────────┘
-                              ↕
-┌──────────────────────────────────────────────────────────────┐
-│           LAYER 2: ORGANIZATIONAL INTELLIGENCE               │
-│           Build SECOND  →  6-9 months  →  2-4x ROI          │
-│                                                              │
-│   Synapse │ Databricks │ Data Factory │ Fabric │ Purview    │
-└──────────────────────────────────────────────────────────────┘
-                              ↕
-┌──────────────────────────────────────────────────────────────┐
-│           LAYER 3: INFRASTRUCTURE & OPERATIONS               │
-│           Build FIRST  →  90 days  →  30-50% savings        │
-│                                                              │
-│   Landing Zones │ Networking │ Security │ Cost Management   │
-└──────────────────────────────────────────────────────────────┘
+![Three-Layer Enterprise AI Architecture](diagrams/png/three-layer-architecture-overview.png)
 
-                 ↕ GOVERNANCE & SECURITY ↕
-          (Entra ID │ Defender │ Purview │ Policy)
-```
+### Why This Sequence Matters
+
+**The Problem**: Most organizations fail at AI because they build backwards — starting with flashy interfaces on unstable foundations. MIT CISR research shows **70-85% of AI projects fail** to move from prototype to production.
+
+**The Solution**: Build in reverse order — each layer funds the next:
+
+| Layer | Build Order | Timeline | Business Outcome |
+|-------|-------------|----------|------------------|
+| **Layer 3: Infrastructure** | FIRST | 90 days | 30-50% cost savings (immediate ROI) |
+| **Layer 2: Intelligence** | SECOND | 6-9 months | 2-4x ROI (data becomes an asset) |
+| **Layer 1: Experience** | LAST | 6-9 months | 5-10x ROI (users see value) |
 
 ### Proven Results
 
-- **85% user adoption** (vs 20% industry average)
-- **70% faster deployment** through reusable patterns
-- **£2M+ operational savings** documented
-- **300% ROI** within 18 months
+| Metric | Result | Industry Benchmark |
+|--------|--------|-------------------|
+| User Adoption | **85%** | 20% average |
+| Deployment Speed | **70% faster** | — |
+| Operational Savings | **£2M+** documented | — |
+| ROI Timeline | **300% within 18 months** | — |
+
+> **Deep Dive**: Read the full [Three-Layer Framework Whitepaper](diagrams/pdf/three-layer-framework-whitepaper.pdf) for comprehensive methodology, real-world case studies, and implementation guidance.
 
 ---
 

@@ -18,60 +18,21 @@ Financial services organizations operate under intense regulatory scrutiny while
 
 ---
 
-## Three-Layer Architecture for Financial Services
+## PCI-DSS Compliant Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│             FINANCIAL SERVICES THREE-LAYER ARCHITECTURE                      │
-└─────────────────────────────────────────────────────────────────────────────┘
+![Financial Services PCI-DSS Architecture](../../diagrams/png/financial-services-pci-dss-architecture.png)
 
-LAYER 1: CUSTOMER & ADVISOR EXPERIENCE
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
-│  │   Mobile     │  │   Advisor    │  │  Financial   │  │   Customer   │    │
-│  │   Banking    │  │   Portal     │  │   Copilot    │  │   Service    │    │
-│  │              │  │  (Power Apps)│  │(Azure OpenAI)│  │    (Teams)   │    │
-│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘    │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-LAYER 2: FINANCIAL INTELLIGENCE
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                              │
-│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐  │
-│  │  Real-time    │  │    Risk       │  │    Fraud      │  │  Customer   │  │
-│  │  Analytics    │  │   Analytics   │  │   Detection   │  │    360      │  │
-│  │ (Event Hubs)  │  │  (Synapse)    │  │   (Azure ML)  │  │ (Dataverse) │  │
-│  └───────────────┘  └───────────────┘  └───────────────┘  └─────────────┘  │
-│                                                                              │
-│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐  │
-│  │ Azure OpenAI  │  │  AI Search    │  │  Databricks   │  │  Purview    │  │
-│  │(Document AI)  │  │ (Knowledge)   │  │  (ML Ops)     │  │ (Governance)│  │
-│  └───────────────┘  └───────────────┘  └───────────────┘  └─────────────┘  │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-LAYER 3: SECURE INFRASTRUCTURE
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                              │
-│  ┌──────────────────────────────────────────────────────────────────────┐  │
-│  │               FINANCIAL SERVICES LANDING ZONE                         │  │
-│  │  • PCI-DSS compliant zones                                           │  │
-│  │  • Zero Trust architecture                                            │  │
-│  │  • Confidential Computing for trading                                 │  │
-│  │  • HSM for cryptographic operations                                   │  │
-│  └──────────────────────────────────────────────────────────────────────┘  │
-│                                                                              │
-│  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐  │
-│  │ Key Vault     │  │ Defender      │  │ Sentinel      │  │ Managed HSM │  │
-│  │ (Premium)     │  │ for Cloud     │  │ (SIEM)        │  │             │  │
-│  └───────────────┘  └───────────────┘  └───────────────┘  └─────────────┘  │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+The architecture above demonstrates a complete PCI-DSS compliant network segmentation with:
+
+- **Zone 1 - Cardholder Data Environment (CDE)**: Payment processing, encrypted card storage, HSM integration, most restrictive NSGs
+- **Zone 2 - Connected Systems**: APIs connecting to CDE, authentication services, limited access
+- **Zone 3 - General Corporate**: Standard workloads with no direct CDE access
+
+**Key Security Controls:**
+- Azure Firewall between all zones (Req 1.3)
+- Encrypted storage with customer-managed keys (Req 3.4)
+- Comprehensive audit logging to SIEM (Req 10.1, 10.2, 10.3)
+- Network Security Groups enforcing zone isolation
 
 ---
 
