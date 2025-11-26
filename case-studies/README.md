@@ -283,6 +283,17 @@ Executive team struggled with:
 
 See detailed case studies in subdirectories:
 
+### Featured Case Study
+
+- **[housing-building-safety/](housing-building-safety/)** - **Building Safety Compliance Platform**
+  - UK Housing Association implementing Building Safety Act 2022 compliance
+  - Integration with Northgate HMS, Keystone, Gas-Track, and 5+ other systems
+  - Microsoft Fabric Lakehouse, Power Platform, Azure AI
+  - **175% ROI over 3 years** | 18-month implementation
+  - Complete journey: Assessment → Architecture → Implementation → Outcomes
+
+### Other Case Studies
+
 - [housing-predictive-maintenance/](housing-predictive-maintenance/) - Full technical details
 - [customer-service-automation/](customer-service-automation/) - RAG implementation guide
 - [executive-decision-support/](executive-decision-support/) - BI + AI patterns
