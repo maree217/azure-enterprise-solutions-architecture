@@ -240,7 +240,7 @@ This repository aligns with and extends Microsoft's official guidance:
 
 ### For Enterprises
 
-1. **Assessment**: Start with our [Current State Assessment Template](docs/assessment-templates/)
+1. **Assessment**: Start with our [Current State Assessment Template](assessment-toolkit/)
 2. **Landing Zone**: Deploy enterprise landing zone from [landing-zones/](landing-zones/)
 3. **Data Platform**: Implement data layer from [accelerators/data-analytics/](accelerators/data-analytics/)
 4. **AI Enablement**: Add AI capabilities from [accelerators/ai-ml/](accelerators/ai-ml/)
@@ -250,13 +250,13 @@ This repository aligns with and extends Microsoft's official guidance:
 
 1. **Reference Architectures**: Browse [reference-architectures/](reference-architectures/) for proven patterns
 2. **IaC Modules**: Use [infrastructure-as-code/](infrastructure-as-code/) for deployments
-3. **Decision Guides**: Consult [docs/frameworks/](docs/frameworks/) for technology choices
+3. **Decision Guides**: Consult [Architecture Decision Records](docs/architecture-decisions/) for technology choices
 4. **Case Studies**: Learn from [case-studies/](case-studies/) real implementations
 
 ### For Developers
 
 1. **Code Samples**: Find working examples in each accelerator directory
-2. **DevOps Pipelines**: CI/CD templates in [.github/workflows/](.github/workflows/)
+2. **DevOps Pipelines**: CI/CD templates coming soon
 3. **Testing Patterns**: Automated testing in accelerator `tests/` directories
 
 ---

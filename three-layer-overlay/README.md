@@ -17,56 +17,21 @@ The Three-Layer Framework provides a structured approach to enterprise AI transf
 
 ## Architecture Overview
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    LAYER 1: END USER EXPERIENCE                             │
-│                    Build LAST → 6-9 months → 5-10x ROI                      │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│   │   Copilot   │  │   Power     │  │    RAG      │  │   Custom    │      │
-│   │   Studio    │  │   Apps      │  │  Chatbots   │  │ Dashboards  │      │
-│   └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘      │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↕
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    LAYER 2: ORGANIZATIONAL INTELLIGENCE                      │
-│                    Build SECOND → 6-9 months → 2-4x ROI                     │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   ┌─────────────────────────────────────────────────────────────────────┐  │
-│   │                    MEMORY + LEARNING (One System)                    │  │
-│   │   Azure AI Search │ Cosmos DB │ Delta Lake │ Vector Stores          │  │
-│   └─────────────────────────────────────────────────────────────────────┘  │
-│                                                                             │
-│   ┌──────────────────────┐              ┌──────────────────────┐          │
-│   │       COMPUTE        │              │  CONFIGURATION/LOGIC │          │
-│   │ Synapse │ Databricks │              │  Data Factory │ ADF  │          │
-│   │ Fabric  │ Azure ML   │              │  Purview │ Pipelines │          │
-│   └──────────────────────┘              └──────────────────────┘          │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↕
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    LAYER 3: INFRASTRUCTURE & OPERATIONS                      │
-│                    Build FIRST → 90 days → 30-50% cost savings              │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │
-│   │ORCHESTRATION│  │OBSERVABILITY│  │  SECURITY   │  │    COST     │      │
-│   │ AKS │ K8s   │  │  Monitor    │  │  Defender   │  │ Management  │      │
-│   │ Container   │  │  App Insights│ │  Sentinel   │  │  Advisor    │      │
-│   │ Apps        │  │  Log Analytics│ │ Key Vault  │  │  Reservations│     │
-│   └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘      │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+![Three-Layer Enterprise AI Architecture](../diagrams/png/three-layer-architecture-overview.png)
 
-                          ↕ GOVERNANCE & SECURITY ↕
-    ┌─────────────────────────────────────────────────────────────────────────┐
-    │  Entra ID │ Azure Policy │ Blueprints │ Purview │ Compliance Manager   │
-    └─────────────────────────────────────────────────────────────────────────┘
-```
+The Three-Layer Framework structures enterprise AI into:
+
+| Layer | Build Order | Timeline | Expected ROI |
+|-------|-------------|----------|--------------|
+| **Layer 1: Experience** | LAST | 6-9 months | 5-10x |
+| **Layer 2: Intelligence** | SECOND | 6-9 months | 2-4x |
+| **Layer 3: Infrastructure** | FIRST | 90 days | 30-50% savings |
+
+**Key Components:**
+- **Layer 1**: Copilot Studio, Power Apps, RAG Chatbots, Custom Dashboards
+- **Layer 2**: Azure AI Search, Cosmos DB, Synapse, Databricks, Data Factory, Purview
+- **Layer 3**: AKS, Azure Monitor, Defender, Sentinel, Key Vault, Cost Management
+- **Governance**: Entra ID, Azure Policy, Blueprints, Compliance Manager
 
 ---
 

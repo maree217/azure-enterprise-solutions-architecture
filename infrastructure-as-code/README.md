@@ -8,34 +8,16 @@ Reusable Terraform and Bicep modules aligned with the Three-Layer Enterprise AI 
 
 This directory contains production-ready IaC templates for deploying Azure resources following enterprise best practices. All modules are designed to integrate with Azure Landing Zones and support the Three-Layer Architecture pattern.
 
-```
-infrastructure-as-code/
-├── terraform/
-│   ├── modules/                 # Reusable Terraform modules
-│   │   ├── networking/          # Hub-spoke, VNets, NSGs
-│   │   ├── security/            # Key Vault, Defender, Sentinel
-│   │   ├── data/                # Synapse, Databricks, Data Factory
-│   │   ├── ai/                  # Azure OpenAI, AI Search, ML
-│   │   └── compute/             # AKS, Container Apps, VMs
-│   └── examples/                # Complete deployment examples
-│       ├── landing-zone/
-│       ├── data-platform/
-│       └── ai-workload/
-│
-├── bicep/
-│   ├── modules/                 # Reusable Bicep modules
-│   │   ├── networking/
-│   │   ├── security/
-│   │   ├── data/
-│   │   ├── ai/
-│   │   └── compute/
-│   └── examples/
-│       ├── landing-zone/
-│       ├── data-platform/
-│       └── ai-workload/
-│
-└── README.md                    # This file
-```
+| Path | Description |
+|------|-------------|
+| `terraform/modules/networking/` | Hub-spoke, VNets, NSGs |
+| `terraform/modules/security/` | Key Vault, Defender, Sentinel |
+| `terraform/modules/data/` | Synapse, Databricks, Data Factory |
+| `terraform/modules/ai/` | Azure OpenAI, AI Search, ML |
+| `terraform/modules/compute/` | AKS, Container Apps, VMs |
+| `terraform/examples/` | Complete deployment examples |
+| `bicep/modules/` | Equivalent Bicep modules |
+| `bicep/examples/` | Complete Bicep deployments |
 
 ---
 
@@ -60,16 +42,13 @@ infrastructure-as-code/
 
 ### 1. Naming Convention
 
-All resources follow the Azure CAF naming convention:
+All resources follow the Azure CAF naming convention: `{resource-type}-{workload}-{environment}-{region}-{instance}`
 
-```
-{resource-type}-{workload}-{environment}-{region}-{instance}
-
-Examples:
-- vnet-hub-prod-uksouth-001
-- kv-data-dev-westeurope-001
-- aoai-chat-prod-eastus2-001
-```
+| Example | Description |
+|---------|-------------|
+| `vnet-hub-prod-uksouth-001` | Production hub VNet in UK South |
+| `kv-data-dev-westeurope-001` | Development Key Vault in West Europe |
+| `aoai-chat-prod-eastus2-001` | Production Azure OpenAI in East US 2 |
 
 ### 2. Tagging Strategy
 
@@ -217,14 +196,7 @@ az deployment sub create \
 
 Deploy a complete landing zone with hub-spoke networking:
 
-```
-examples/landing-zone/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── production.tfvars
-└── README.md
-```
+**Files:** `main.tf`, `variables.tf`, `outputs.tf`, `production.tfvars`, `README.md`
 
 **Includes:**
 - Management group hierarchy
@@ -238,14 +210,7 @@ examples/landing-zone/
 
 Deploy a modern data platform:
 
-```
-examples/data-platform/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── production.tfvars
-└── README.md
-```
+**Files:** `main.tf`, `variables.tf`, `outputs.tf`, `production.tfvars`, `README.md`
 
 **Includes:**
 - Data Lake (ADLS Gen2) with zones
@@ -258,14 +223,7 @@ examples/data-platform/
 
 Deploy an AI/ML workload:
 
-```
-examples/ai-workload/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-├── production.tfvars
-└── README.md
-```
+**Files:** `main.tf`, `variables.tf`, `outputs.tf`, `production.tfvars`, `README.md`
 
 **Includes:**
 - Azure OpenAI with deployments

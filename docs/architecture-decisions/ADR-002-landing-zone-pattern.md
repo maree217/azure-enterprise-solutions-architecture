@@ -33,18 +33,9 @@ We adopt a **tiered recommendation approach** based on organizational maturity:
 
 **Recommendation:** Azure Landing Zones (Enterprise-Scale) via Terraform
 
-```
-Management Groups
-├── Tenant Root Group
-│   ├── Platform
-│   │   ├── Management
-│   │   ├── Connectivity
-│   │   └── Identity
-│   ├── Landing Zones
-│   │   ├── Corp
-│   │   └── Online
-│   └── Decommissioned
-```
+![Management Group Hierarchy](../../diagrams/png/management-group-hierarchy.png)
+
+*The diagram above shows the Enterprise-Scale management group hierarchy with Platform (Management, Connectivity, Identity), Landing Zones (Corp, Online), Sandbox, and Decommissioned management groups.*
 
 **Rationale:**
 - Full governance capabilities
@@ -57,13 +48,7 @@ Management Groups
 
 **Recommendation:** ALZ-Bicep with simplified hierarchy
 
-```
-Management Groups
-├── Tenant Root Group
-│   ├── Platform
-│   ├── Landing Zones
-│   └── Sandbox
-```
+A simplified version of the management group structure with: Platform, Landing Zones, and Sandbox management groups under the Tenant Root Group.
 
 **Rationale:**
 - Native Azure tooling (no external state)
@@ -75,14 +60,7 @@ Management Groups
 
 **Recommendation:** Start Small pattern with single subscription
 
-```
-Single Subscription
-├── Resource Groups
-│   ├── rg-networking
-│   ├── rg-security
-│   ├── rg-workload-prod
-│   └── rg-workload-dev
-```
+A single subscription model with resource groups: `rg-networking`, `rg-security`, `rg-workload-prod`, and `rg-workload-dev`.
 
 **Rationale:**
 - Minimal complexity

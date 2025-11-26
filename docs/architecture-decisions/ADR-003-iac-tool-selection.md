@@ -77,16 +77,15 @@ resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
 
 ### Repository Structure
 
-```
-infrastructure-as-code/
-├── terraform/
-│   ├── modules/           # Reusable modules
-│   └── examples/          # Complete deployments
-├── bicep/
-│   ├── modules/           # Reusable modules
-│   └── examples/          # Complete deployments
-└── README.md              # Selection guidance
-```
+The `infrastructure-as-code/` directory contains:
+
+| Path | Purpose |
+|------|---------|
+| `terraform/modules/` | Reusable Terraform modules |
+| `terraform/examples/` | Complete Terraform deployments |
+| `bicep/modules/` | Reusable Bicep modules |
+| `bicep/examples/` | Complete Bicep deployments |
+| `README.md` | Selection guidance |
 
 ## Consequences
 

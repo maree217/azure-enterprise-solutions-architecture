@@ -75,7 +75,7 @@ A common fear is that AI will leak data or run up huge bills. This repository im
 ## 📞 Next Steps
 
 1.  **Identify a Pilot:** Pick one high-value, low-risk use case (e.g., an internal HR chatbot).
-2.  **Assess Readiness:** Ask your technical team to run the [Assessment Toolkit](../docs/assessment-templates/).
+2.  **Assess Readiness:** Ask your technical team to run the [Assessment Toolkit](assessment-toolkit/).
 3.  **Deploy Foundation:** Ensure Layer 3 (Landing Zone) is secure before scaling.
 
 > **"The best time to plant a tree was 20 years ago. The best time to build your AI foundation is today."**
